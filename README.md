@@ -1,85 +1,71 @@
-# 🏗 Scaffold-ETH 2
+# Labs #36 — Ship-to-Earn Submission Portal
 
-**Live URL:** https://bafybeibgrqvrlndfxm23y5jcsm3z4nxxex5ktjrdu7xnznm6stxvsdtxra.ipfs.community.bgipfs.com/
+A decentralized submission portal for Labs #36 where developers submit their CLAWD/CV-powered builds to compete for a 15M CLAWD prize pool.
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+## Live App
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+[https://bafybeibgrqvrlndfxm23y5jcsm3z4nxxex5ktjrdu7xnznm6stxvsdtxra.ipfs.community.bgipfs.com/](https://bafybeibgrqvrlndfxm23y5jcsm3z4nxxex5ktjrdu7xnznm6stxvsdtxra.ipfs.community.bgipfs.com/)
 
-> [!NOTE]
-> 🤖 Scaffold-ETH 2 is AI-ready! It has everything agents need to build on Ethereum. Check `.agents/`, `.claude/`, `.opencode` or `.cursor/` for more info.
+## Contracts
 
-⚙️ Built using NextJS, RainbowKit, Foundry, Wagmi, Viem, and Typescript.
+| Contract | Address | Network |
+|---|---|---|
+| SubmissionPortal | [0xbb442f9809f728cfc85cf4b35f0b1f35a6e0b9c0](https://basescan.org/address/0xbb442f9809f728cfc85cf4b35f0b1f35a6e0b9c0) | Base |
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+Owner: `0x1d266aae9E1f8cb9228821C40fB5DbC7C771cbce` (client wallet)
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+## What It Does
 
-## Requirements
+1. **Submit** — Developers connect a wallet and submit a repo link + demo video link. One submission per wallet, onchain.
+2. **Gallery** — Public view of all submissions with scores (after scoring period).
+3. **Admin** — Owner-only dashboard to open/close submissions, set scores (0–100), and distribute prizes.
 
-Before you begin, you need to install the following tools:
+## Scoring (after 30-day window)
 
-- [Node (>= v20.18.3)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+| Criterion | Weight |
+|---|---|
+| CLAWD Burned | 40% |
+| Unique Paying Wallets | 30% |
+| Leftclaw Service Calls | 20% |
+| Novelty / Completeness | 10% |
 
-## Quickstart
+Top 3 receive 50% / 30% / 20% of the prize pool.
 
-To get started with Scaffold-ETH 2, follow the steps below:
+## Admin Setup (Client Actions Required)
 
-1. Install dependencies if it was skipped in CLI:
+After the portal is live, the owner must:
 
-```
-cd my-dapp-example
+1. **Set the CLAWD prize token** — call `setPrizeToken(clawdAddress)` with the CLAWD ERC-20 address on Base.
+2. **Open submissions** — call `openSubmissions()` when ready to accept entries.
+3. **Deposit prize pool** — transfer 15M CLAWD tokens to the `SubmissionPortal` contract address.
+4. **Close submissions** — call `closeSubmissions()` after the 30-day window.
+5. **Set scores** — call `setScores([id0, id1, ...], [score0, score1, ...])` with scores in basis points (0–10000).
+6. **Distribute prizes** — call `distributePrizes(firstId, secondId, thirdId)` to pay top 3.
+
+All admin actions are available on the `/admin` page when connected as the owner wallet.
+
+## Development
+
+```bash
+git clone https://github.com/clawdbotatg/leftclaw-service-job-261
+cd leftclaw-service-job-261
 yarn install
+yarn chain         # local Anvil node
+yarn deploy        # deploy to local
+yarn start         # frontend at localhost:3000
 ```
 
-2. Run a local network in the first terminal:
+Deploy to Base:
 
-```
-yarn chain
-```
-
-This command starts a local Ethereum network using Foundry. The network runs on your local machine and can be used for testing and development. You can customize the network configuration in `packages/foundry/foundry.toml`.
-
-3. On a second terminal, deploy the test contract:
-
-```
-yarn deploy
+```bash
+source .env
+yarn deploy --network base --file DeploySubmissionPortal.s.sol
+yarn verify --network base
 ```
 
-This command deploys a test smart contract to the local network. The contract is located in `packages/foundry/contracts` and can be modified to suit your needs. The `yarn deploy` command uses the deploy script located in `packages/foundry/script` to deploy the contract to the network. You can also customize the deploy script.
+## Stack
 
-4. On a third terminal, start your NextJS app:
-
-```
-yarn start
-```
-
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
-
-Run smart contract test with `yarn foundry:test`
-
-- Edit your smart contracts in `packages/foundry/contracts`
-- Edit your frontend homepage at `packages/nextjs/app/page.tsx`. For guidance on [routing](https://nextjs.org/docs/app/building-your-application/routing/defining-routes) and configuring [pages/layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts) checkout the Next.js documentation.
-- Edit your deployment scripts in `packages/foundry/script`
-
-
-## Documentation
-
-Visit our [docs](https://docs.scaffoldeth.io) to learn how to start building with Scaffold-ETH 2.
-
-To know more about its features, check out our [website](https://scaffoldeth.io).
-
-## Contributing to Scaffold-ETH 2
-
-We welcome contributions to Scaffold-ETH 2!
-
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+- **Smart Contracts**: Solidity + Foundry + OpenZeppelin 5.x
+- **Frontend**: Next.js 16 + Scaffold-ETH 2 + RainbowKit + DaisyUI
+- **Deployment**: BGIPFS (decentralized, censorship-resistant)
+- **Chain**: Base (EVM L2, chain ID 8453)
