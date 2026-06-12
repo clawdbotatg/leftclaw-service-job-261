@@ -4,6 +4,627 @@
  */
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
-const deployedContracts = {} as const;
+const deployedContracts = {
+  8453: {
+    SubmissionPortal: {
+      address: "0xbb442f9809f728cfc85cf4b35f0b1f35a6e0b9c0",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_prizeToken",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_initialOwner",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "MAX_SCORE_BPS",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "acceptOwnership",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "closeSubmissions",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "distributePrizes",
+          inputs: [
+            {
+              name: "first",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "second",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "third",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "getAllSubmissions",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "tuple[]",
+              internalType: "struct SubmissionPortal.Submission[]",
+              components: [
+                {
+                  name: "submitter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "repoLink",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "videoLink",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "timestamp",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "totalScore",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "scored",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getSubmission",
+          inputs: [
+            {
+              name: "id",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType: "struct SubmissionPortal.Submission",
+              components: [
+                {
+                  name: "submitter",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "repoLink",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "videoLink",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "timestamp",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "totalScore",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "scored",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getSubmissionCount",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "hasSubmitted",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "openSubmissions",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "owner",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "pendingOwner",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "prizeToken",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "contract IERC20",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "renounceOwnership",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "setPrizeToken",
+          inputs: [
+            {
+              name: "_prizeToken",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "setScores",
+          inputs: [
+            {
+              name: "ids",
+              type: "uint256[]",
+              internalType: "uint256[]",
+            },
+            {
+              name: "scores",
+              type: "uint256[]",
+              internalType: "uint256[]",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "submissions",
+          inputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "submitter",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "repoLink",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "videoLink",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "timestamp",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "totalScore",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "scored",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "submissionsOpen",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "submit",
+          inputs: [
+            {
+              name: "repoLink",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "videoLink",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "transferOwnership",
+          inputs: [
+            {
+              name: "newOwner",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "event",
+          name: "OwnershipTransferStarted",
+          inputs: [
+            {
+              name: "previousOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "newOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "OwnershipTransferred",
+          inputs: [
+            {
+              name: "previousOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "newOwner",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "PrizeTokenUpdated",
+          inputs: [
+            {
+              name: "newToken",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "PrizesDistributed",
+          inputs: [
+            {
+              name: "first",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "second",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "third",
+              type: "address",
+              indexed: false,
+              internalType: "address",
+            },
+            {
+              name: "prizePool",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "ScoreSet",
+          inputs: [
+            {
+              name: "id",
+              type: "uint256",
+              indexed: true,
+              internalType: "uint256",
+            },
+            {
+              name: "score",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "SubmissionsClosed",
+          inputs: [],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "SubmissionsOpened",
+          inputs: [],
+          anonymous: false,
+        },
+        {
+          type: "event",
+          name: "Submitted",
+          inputs: [
+            {
+              name: "id",
+              type: "uint256",
+              indexed: true,
+              internalType: "uint256",
+            },
+            {
+              name: "submitter",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "repoLink",
+              type: "string",
+              indexed: false,
+              internalType: "string",
+            },
+            {
+              name: "videoLink",
+              type: "string",
+              indexed: false,
+              internalType: "string",
+            },
+          ],
+          anonymous: false,
+        },
+        {
+          type: "error",
+          name: "AlreadySubmitted",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "EmptyString",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "InvalidScore",
+          inputs: [
+            {
+              name: "score",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+        },
+        {
+          type: "error",
+          name: "LengthMismatch",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "NoPrizePool",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "NotScored",
+          inputs: [
+            {
+              name: "id",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+        },
+        {
+          type: "error",
+          name: "OwnableInvalidOwner",
+          inputs: [
+            {
+              name: "owner",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+        },
+        {
+          type: "error",
+          name: "OwnableUnauthorizedAccount",
+          inputs: [
+            {
+              name: "account",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+        },
+        {
+          type: "error",
+          name: "ReentrancyGuardReentrantCall",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "SafeERC20FailedOperation",
+          inputs: [
+            {
+              name: "token",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+        },
+        {
+          type: "error",
+          name: "SubmissionsNotOpen",
+          inputs: [],
+        },
+        {
+          type: "error",
+          name: "UnknownSubmission",
+          inputs: [
+            {
+              name: "id",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+        },
+        {
+          type: "error",
+          name: "ZeroAddress",
+          inputs: [],
+        },
+      ],
+      inheritedFunctions: {},
+      deployedOnBlock: 47249950,
+    },
+  },
+} as const;
 
 export default deployedContracts satisfies GenericContractsDeclaration;
